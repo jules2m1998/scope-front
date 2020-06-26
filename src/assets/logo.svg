@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="195" height="58" viewBox="0 0 195 58">
+  <g id="Groupe_145" data-name="Groupe 145" transform="translate(-81 -51)">
+    <g id="Groupe_91" data-name="Groupe 91" transform="translate(-39 -18)">
+      <text id="SC_PE" data-name="SC   PE" transform="translate(120 115)" fill="#fff" font-size="48" font-family="TTOctosquares-Bold, TTOctosquares" font-weight="700"><tspan x="0" y="0" xml:space="preserve">SC   PE</tspan></text>
+    </g>
+    <g id="Groupe_144" data-name="Groupe 144" transform="translate(-13 -13)">
+      <g id="Groupe_92" data-name="Groupe 92" transform="translate(-10 58)">
+        <path id="Icon_awesome-user-circle" data-name="Icon awesome-user-circle" d="M23.168.562A23.017,23.017,0,1,0,46.336,23.579,23.089,23.089,0,0,0,23.168.562Zm0,8.91a8.167,8.167,0,1,1-8.221,8.167A8.194,8.194,0,0,1,23.168,9.472Zm0,31.926A17.949,17.949,0,0,1,9.482,35.068a10.424,10.424,0,0,1,9.2-5.55,2.3,2.3,0,0,1,.663.1,12.443,12.443,0,0,0,3.821.64,12.4,12.4,0,0,0,3.821-.64,2.3,2.3,0,0,1,.663-.1,10.424,10.424,0,0,1,9.2,5.55A17.949,17.949,0,0,1,23.168,41.4Z" transform="translate(177 10.438)" fill="#fff"/>
+      </g>
+      <path id="Icon_map-search" data-name="Icon map-search" d="M27.127,22.518A13.875,13.875,0,1,0,22.454,27.2l9.419,9.446,4.671-4.687ZM15.291,23.927a8.59,8.59,0,1,1,8.569-8.585,8.591,8.591,0,0,1-8.569,8.585Z" transform="translate(172.708 73.959) rotate(-10)" fill="#2143ce"/>
+    </g>
+  </g>
+</svg>
