@@ -8,20 +8,20 @@
         >
             <v-toolbar-title><img src="~@/assets/logo.svg" alt="logo" id="logo"></v-toolbar-title>
 
-            <v-spacer></v-spacer>
-
-            <div id="menu" class="mr-5 mt-3">
+            <div id="menu">
                  <ul class="d-flex flex-row">
-                     <li class="d-flex flex-row mr-4" v-for="(value, index) in menu" :key="index">
-                         <div class="menu__ico">
+                     <li class="d-flex flex-row mr-4 justify-center align-center" v-for="(value, index) in menu" :key="index">
+                         <div class="menu__ico mr-1 mb-1">
                              <v-icon>{{ value.ico }}</v-icon>
                          </div>
                          <div class="menu__title">
-                             <a href="#" class="menu--text">{{ value.title | capitalize}}</a>
+                             <a :href="value.to" class="menu--text">{{ value.title | capitalize}}</a>
                          </div>
                      </li>
                  </ul>
             </div>
+
+            <v-spacer></v-spacer>
             <div id="topbuttons">
                 <v-btn class="ma-2" outlined color="white" autocapitalize="characters">
                     Inscription
@@ -45,7 +45,7 @@
                 {
                     ico: 'mdi-home',
                     title: 'Accueil',
-                    to: 'declare'
+                    to: '/'
                 },
                 {
                     ico: 'mdi-account-search',
@@ -80,5 +80,10 @@
     .menu--text{
         color: white!important;
         text-decoration: none;
+    }
+    .menu__ico{
+        .v-icon{
+            font-size: 16px!important;
+        }
     }
 </style>
