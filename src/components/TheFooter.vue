@@ -12,7 +12,7 @@
 
 <style lang="scss" scoped>
     #footer{
-        background: #1f28cf;
+        background: #0f1b4c;
         p{
             color: white;
         }

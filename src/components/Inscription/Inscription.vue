@@ -8,7 +8,7 @@
             >
                 <v-row>
                     <v-col cols="6" class="d-flex justify-center flex-column px-4">
-                        <h1 class="connexion__text mb-10">Connectez-vous</h1>
+                        <h1 class="connexion__text mb-10">Inscription</h1>
                         <div id="form">
                             <v-text-field
                                     label="Nom d'utilisateur..."
@@ -18,9 +18,13 @@
                                     label="Mot de passe..."
                                     outlined
                             ></v-text-field>
+                            <v-text-field
+                                    label="Confirmez votre mot de passe..."
+                                    outlined
+                            ></v-text-field>
 
                             <div class="d-flex justify-center align-center">
-                                <v-btn x-large color="primary" dark>Connexion</v-btn>
+                                <v-btn x-large color="primary" dark>Inscription</v-btn>
                             </div>
 
                         </div>
@@ -36,7 +40,7 @@
 
 <script>
     export default {
-        name: "connexion"
+        name: "inscription"
     }
 </script>
 

@@ -2,7 +2,7 @@
   <v-app>
     <the-header></the-header>
     <div class="d-flex flex-column w-100">
-      <connexion></connexion>
+      <declare></declare>
     </div>
     <the-footer></the-footer>
   </v-app>
@@ -10,19 +10,17 @@
 
 <script>
   import TheHeader from "@/components/TheHeader";
-  // import Home from "@/components/Home/Home";
   import TheFooter from "@/components/TheFooter";
-  import Connexion from "@/components/Connexion/connexion";
+  import Declare from "@/components/declare/Declare";
 
 
 export default {
   name: 'App',
 
   components: {
-    Connexion,
+    Declare,
     TheFooter,
     TheHeader,
-    // Home
   },
 
   data: () => ({
