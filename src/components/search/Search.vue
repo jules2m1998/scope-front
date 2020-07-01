@@ -1,0 +1,47 @@
+<template>
+    <v-container id="page" class="my-10">
+        <v-card
+                class="mx-auto px-4 d-flex flex-column justify-center align-center py-4"
+                width="500px"
+        >
+            <img class="img__prev" @click="openFile" id="upload" alt="image" src="~@/assets/utils/test.jpg" width="400px">
+            <input type="file" id="imgFile" v-show="false" @change="setImage">
+
+            <v-btn x-large color="primary" class="w-100 mt-10" dark>Rechercher</v-btn>
+        </v-card>
+    </v-container>
+</template>
+
+<script>
+    export default {
+        name: "Search",
+        methods: {
+            openFile () {
+                document.getElementById('imgFile').click()
+            },
+            setImage(event) {
+                let reader = new FileReader();
+                reader.onload = function()
+                {
+                    let output = document.getElementById('upload');
+                    output.src = reader.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        },
+    }
+</script>
+
+<style lang="scss" scoped>
+
+    .img__prev{
+        border: 1px dotted red;
+        height: auto;
+        width: 400px;
+        cursor: pointer;
+        &:hover{
+            border: 1px dotted #0f1b4c;
+        }
+    }
+
+</style>
