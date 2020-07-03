@@ -6,16 +6,16 @@
         >
             <v-row>
                 <v-col cols="6" class="d-flex justify-center flex-column">
-                    <h1 class="my__text mb-10">Meva'a Jules Junior</h1>
-                    <img class="img__prev" id="upload" alt="image" src="~@/assets/utils/test.jpg">
+                    <h1 class="my__text mb-10">{{individual.person.name}}</h1>
+                    <img class="img__prev" id="upload" alt="image" :src="'http://localhost:8000' + individual.person.imgs[0].fullPictureLocation">
                 </v-col>
                 <v-col class="d-flex flex-column justify-center align-center">
-                    Date de naissance : 30/03/1998 <br/>
+                    Date de naissance : {{ individual.person.birth_day }} <br/>
                     Vie à : Douala <br>
-                    Disparu le : 30/03/1998 <br/>
-                    Sexe : Masculin <br/>
-                    Recherché par : User
-                    <p id="number">Numéro à contacter : 6.90.98.10.56</p>
+                    Disparu le : {{ individual.lose_date }} <br/>
+                    Sexe : {{ individual.person.sex | getsex }} <br/>
+                    Recherché par : {{individual.user.username}}}
+                    <p id="number">Numéro à contacter : {{individual.user.phone}}</p>
                 </v-col>
             </v-row>
         </v-card>
@@ -23,14 +23,40 @@
 </template>
 
 <script>
+    import {httpParams} from "@/components/mixins.mixin";
+
     export default {
-        name: "Detail"
+        name: "Detail",
+        created() {
+            this.$http.get(this.host + 'individual/' + this.$route.params.id)
+                .then(res => {
+                    console.log(res.data)
+                    this.individual = res.data
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        },
+        data: () => ({
+            individual: null
+        }),
+        mixins: [httpParams],
+        filters: {
+            getsex(value){
+                if (value === 'm') {
+                    return 'Masculin'
+                } else {
+                    return 'Feminin'
+                }
+            }
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     #page{
         width: 100%;
+        height: 100vh;
         .my__text{
             color: #0f1b4c;
             font-size: 25px;

@@ -5,7 +5,7 @@
                 <h1>Liste des personne disparues</h1>
             </div>
         </div>
-        <list></list>
+        <list :individual="indivs"></list>
     </v-container>
 </template>
 
@@ -13,7 +13,18 @@
     import List from "@/components/listIndividu/list";
     export default {
         name: "listIndividus",
-        components: {List}
+        components: {List},
+        data: () => ({
+            host: 'http://127.0.0.1:8000/',
+            indivs: null
+        }),
+        created () {
+            this.$http.get(this.host + 'individual')
+                .then(res => {
+                    this.indivs = res.data
+                    console.log(this.indivs)
+                })
+        }
     }
 </script>
 

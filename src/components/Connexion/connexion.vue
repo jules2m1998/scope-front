@@ -13,14 +13,19 @@
                             <v-text-field
                                     label="Nom d'utilisateur..."
                                     outlined
+                                    v-model="user.username"
+                                    :error-messages="error.password"
                             ></v-text-field>
                             <v-text-field
                                     label="Mot de passe..."
                                     outlined
+                                    v-model="user.password"
+                                    :error-messages="error.password"
+                                    type="password"
                             ></v-text-field>
 
                             <div class="d-flex justify-center align-center">
-                                <v-btn x-large color="primary" dark>Connexion</v-btn>
+                                <v-btn x-large color="primary" dark @click="login">Connexion</v-btn>
                             </div>
 
                         </div>
@@ -35,8 +40,36 @@
 </template>
 
 <script>
+    import {httpParams} from "@/components/mixins.mixin";
+
     export default {
-        name: "connexion"
+        name: "connexion",
+        mixins: [httpParams],
+        data: () => ({
+            user: {
+                username: '',
+                password: ''
+            },
+            error: {
+                username: [],
+                password: []
+            },
+            load: false
+        }),
+        methods: {
+            login(){
+                this.$http.post(this.host + 'user/login/', {...this.user})
+                    .then(res => {
+                        console.log(res.status)
+                    })
+                    .catch(() => {
+                        this.error = {
+                            username: ["User name or password not valid"],
+                            password: ["User name or password not valid"]
+                        }
+                    })
+            }
+        }
     }
 </script>
 

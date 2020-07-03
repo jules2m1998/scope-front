@@ -90,8 +90,27 @@
                     img: "https://cdn.vuetifyjs.com/images/john.jpg",
                     name: "Meva'a Jules Junior"
                 },
-            ]
-        })
+            ],
+            path: 'http://127.0.0.1:8800/individual/current',
+            base: 'http://127.0.0.1:8800/'
+        }),
+        created() {
+            this.$http.get(this.path)
+                .then(res => {
+                    let data = res.data
+                    this.declares = []
+                    data.forEach(item => {
+                        console.log(data)
+                        this.declares.push({
+                            img: this.base + item.person.imgs[0].fullPictureLocation,
+                            name: item.person.name
+                        })
+                        console.log(this.declares)
+                    })
+                })
+                .catch( err => console.log(err))
+            console.log(this.path)
+        }
     }
 </script>
 

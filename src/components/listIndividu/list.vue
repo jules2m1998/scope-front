@@ -1,10 +1,6 @@
 <template>
     <div class="w-100 d-flex flex-row flex-wrap">
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
-        <item></item>
+        <item v-for="(value, key) in individual" :key="key" :indiv="value"></item>
     </div>
 </template>
 
@@ -12,7 +8,10 @@
     import Item from "@/components/listIndividu/item";
     export default {
         name: "list",
-        components: {Item}
+        components: {Item},
+        props: ['individual'],
+        mounted (){
+        }
     }
 </script>
 

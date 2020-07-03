@@ -15,7 +15,7 @@
                              <v-icon>{{ value.ico }}</v-icon>
                          </div>
                          <div class="menu__title">
-                             <a :href="value.to" class="menu--text">{{ value.title | capitalize}}</a>
+                             <router-link :to="{name: value.to}">{{ value.title | capitalize}}</router-link>
                          </div>
                      </li>
                  </ul>
@@ -23,11 +23,11 @@
 
             <v-spacer></v-spacer>
             <div id="topbuttons">
-                <v-btn class="ma-2" outlined color="white" autocapitalize="characters">
+                <v-btn class="ma-2" outlined color="white" autocapitalize="characters" :to="{name: 'register'}">
                     Inscription
                     <v-icon right>mdi-account-plus</v-icon>
                 </v-btn>
-                <v-btn class="ma-2 text--primary" tile color="white">
+                <v-btn class="ma-2 text--primary" tile color="white" :to="{name: 'login'}">
                     Connexion
                     <v-icon right>mdi-login</v-icon>
                 </v-btn>
@@ -45,7 +45,7 @@
                 {
                     ico: 'mdi-home',
                     title: 'Accueil',
-                    to: '/'
+                    to: 'home'
                 },
                 {
                     ico: 'mdi-account-search',
@@ -56,6 +56,11 @@
                     ico: 'mdi-alert-box',
                     title: 'Déclarer',
                     to: 'declare'
+                },
+                {
+                    ico: 'mdi-alert-box',
+                    title: 'Liste des disparus',
+                    to: 'allIndividual'
                 },
             ]
         }),
@@ -73,6 +78,13 @@
 </script>
 
 <style scoped lang="scss">
+    a{
+        text-decoration: none;
+        color: white!important;
+    }
+    .router-link-exact-active{
+        text-shadow: 1px 1px 15px white;
+    }
     #logo{
         width: auto;
         height: 31px;
