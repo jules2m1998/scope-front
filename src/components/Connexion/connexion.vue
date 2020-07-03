@@ -35,6 +35,10 @@
                     </v-col>
                 </v-row>
             </v-card>
+            <pre>
+                {{ defaultUser }}
+                {{ user }}
+            </pre>
         </v-container>
     </div>
 </template>
@@ -60,9 +64,10 @@
             login(){
                 this.$http.post(this.host + 'user/login/', {...this.user})
                     .then(res => {
-                        console.log(res.status)
+                        sessionStorage.setItem('default', JSON.stringify(res.data))
                     })
-                    .catch(() => {
+                    .catch((err) => {
+                        console.log(err)
                         this.error = {
                             username: ["User name or password not valid"],
                             password: ["User name or password not valid"]

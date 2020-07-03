@@ -7,7 +7,15 @@
             <img class="img__prev" @click="openFile" id="upload" alt="image" src="~@/assets/utils/test.jpg" width="400px">
             <input type="file" id="imgFile" v-show="false" @change="setImage">
 
-            <v-btn x-large color="primary" class="w-100 mt-10" dark @click="searchImage">Rechercher</v-btn>
+            <v-btn x-large color="primary" class="w-100 mt-10" dark @click="searchImage" :loading="isLoading">Rechercher</v-btn>
+<!--            <v-alert type="error" v-if="error">{{error}}</v-alert>-->
+            <v-snackbar
+                    bottom
+                    v-model="snack"
+            >
+                {{ error }}
+                <v-btn @click="snack = false" color="pink" text>Fermer</v-btn>
+            </v-snackbar>
         </v-card>
     </v-container>
 </template>
@@ -32,20 +40,36 @@
                 reader.readAsDataURL(event.target.files[0]);
             },
             searchImage () {
-                if (this.fullPictureLocation){
-                    const imageForm = new FormData();
-                    imageForm.append('img', this.fullPictureLocation)
-                    this.$http.post(this.host + 'person/image/find', imageForm)
-                        .then(res => {
-                            let id = res.data.correspondances.id
+                if (!this.isLoading)
+                    this.isLoading = true
+                    if (this.fullPictureLocation){
+                        const imageForm = new FormData();
+                        imageForm.append('img', this.fullPictureLocation)
+                        this.$http.post(this.host + 'person/image/find', imageForm)
+                            .then(res => {
+                                this.isLoading = false
+                                let id = res.data.correspondances.id
 
-                            this.$router.push({name: 'detail', params: {id}})
-                        })
-                }
+                                this.$router.push({name: 'detail', params: {id}})
+                            })
+                            .catch(() => {
+                                this.error = 'Personne non déclarer comme perdu veillez la déclarer :)'
+                                this.isLoading = false
+                                this.snack = true
+
+                            })
+                    } else {
+                        this.isLoading = false
+                        this.error = 'Veillez inserer une image pour la recherche :!'
+                        this.snack = true
+                    }
             }
         },
         data: () => ({
-            fullPictureLocation: null
+            fullPictureLocation: null,
+            isLoading: false,
+            error: null,
+            snack: false
         }),
         mixins: [httpParams]
     }
