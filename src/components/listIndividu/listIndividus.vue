@@ -5,7 +5,10 @@
                 <h1>Liste des personne disparues</h1>
             </div>
         </div>
-        <list :individual="indivs"></list>
+        <list :individual="indivs" v-if="found"></list>
+        <v-card v-else class="d-flex justify-center align-center" id="not-found">
+            <p>Aucune correspondance</p>
+        </v-card>
     </v-container>
 </template>
 
@@ -16,14 +19,26 @@
         components: {List},
         data: () => ({
             host: 'http://127.0.0.1:8000/',
-            indivs: null
+            indivs: null,
+            found: true
         }),
         created () {
-            this.$http.get(this.host + 'individual')
-                .then(res => {
-                    this.indivs = res.data
-                    console.log(this.indivs)
-                })
+            if (!this.$route.params.name){
+                this.$http.get(this.host + 'individual')
+                    .then(res => {
+                        this.indivs = res.data
+                        console.log(this.indivs)
+                    })
+            } else {
+                this.$http.get(this.host + 'individual/name/' + this.$route.params.name)
+                    .then(res => {
+                        this.indivs = res.data
+                        console.log(this.indivs)
+                    })
+                    .catch(() => {
+                        this.found = false
+                    })
+            }
         }
     }
 </script>
@@ -46,5 +61,8 @@
     .w-100{
         width: 100%;
         color: white;
+    }
+    #not-found{
+        height: 65vh;
     }
 </style>

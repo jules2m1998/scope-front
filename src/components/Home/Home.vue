@@ -4,7 +4,7 @@
             <div id="filter" class="w-100 d-flex flex-column justify-center align-center">
                 <div id="search__box" class="d-flex flex-row align-center">
                     <div id="icon" class="ml-2"><v-icon>mdi-magnify</v-icon></div>
-                    <div id="input" class="mr-3"><input type="text"></div>
+                    <div id="input" class="mr-3"><input type="text" @keyup.enter="findWithName" v-model="search"></div>
                 </div>
             </div>
 
@@ -92,7 +92,8 @@
                 },
             ],
             path: 'http://127.0.0.1:8800/individual/current',
-            base: 'http://127.0.0.1:8800/'
+            base: 'http://127.0.0.1:8800/',
+            search: ''
         }),
         created() {
             this.$http.get(this.path)
@@ -110,6 +111,11 @@
                 })
                 .catch( err => console.log(err))
             console.log(this.path)
+        },
+        methods: {
+            findWithName() {
+                this.$router.push({name: 'allIndividual', params: {name: this.search}})
+            }
         }
     }
 </script>

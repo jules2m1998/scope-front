@@ -41,7 +41,7 @@ export default new VueRouter({
             component: Detail
         },
         {
-            path: '/person',
+            path: '/persons/:name?',
             name: 'allIndividual',
             component: listIndividus
         },
